@@ -1,8 +1,4 @@
 /** @type {import('next').NextConfig} */
-
-
-// next.config.js
-/** @type {import('next').NextConfig} */
 const nextConfig = {
     async headers() {
       return [
@@ -10,16 +6,12 @@ const nextConfig = {
           source: '/:path*',
           headers: [
             {
-              key: 'X-Frame-Options',
-              value: 'ALLOWALL'
-            },
-            {
               key: 'Content-Security-Policy',
-              value: "frame-ancestors *;" // Allows all domains
+              value: "frame-ancestors 'self' https://*.dynamics.com https://*.crm.dynamics.com https://*.dynamics365.com *"
             },
             {
               key: 'Access-Control-Allow-Origin',
-              value: '*' // Allows all origins
+              value: '*'
             }
           ],
         },
@@ -27,5 +19,4 @@ const nextConfig = {
     },
   }
   
-
-export default nextConfig;
+  module.exports = nextConfig

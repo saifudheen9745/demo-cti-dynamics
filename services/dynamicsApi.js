@@ -47,7 +47,7 @@ export const setMode = () => {
     console.log("integration dynamics","called set mode");
     
     // Setting Panel to minimize mode.
-Microsoft.CIFramework.setMode(0).then(
+Microsoft.CIFramework.setMode(1).then(
     function (result) {
         // result will have current state of the panel.
         console.log("integration dynamics",result)
