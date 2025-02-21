@@ -9,7 +9,8 @@ export const searchAndDisplayContact = async (phoneNumber) => {
         // Search for the contact using CIFramework
         const result = await window.Microsoft.CIFramework.searchAndOpenRecords("contact", query, false);
         const contacts = JSON.parse(result);
-
+        console.log("integration dynamics",contacts);
+        
         if (contacts && contacts.length > 0) {
             // If contacts found, open the first matching record
             await Microsoft.CIFramework.openForm({
@@ -43,14 +44,16 @@ export const searchAndDisplayContact = async (phoneNumber) => {
 };
 
 export const setMode = () => {
+    console.log("integration dynamics","called set mode");
+    
     // Setting Panel to minimize mode.
 Microsoft.CIFramework.setMode(0).then(
     function (result) {
         // result will have current state of the panel.
-        console.log(result)
+        console.log("integration dynamics",result)
     },
     function (error) {
         // code handling for promise failure
-        console.log(error)
+        console.log("integration dynamics",error)
     });
 }
