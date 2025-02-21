@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import LoginScreen from '@/components/login/LoginScreen';
 import HomeScreen from '@/components/agent/HomeScreen';
+import { setMode } from '@/services/dynamicsApi';
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,6 +28,8 @@ export default function Home() {
         
         // Wait for script to load
         await scriptPromise;
+        console.log("window",window.Microsoft.CIFramework);
+        setMode()
         setIsScriptLoaded(true);
       } catch (error) {
         console.error("Failed to load Dynamics script:", error);

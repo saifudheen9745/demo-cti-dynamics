@@ -20,6 +20,7 @@ import CallSection from '../call/CallSection';
 import TransferForm from '../call/TransferForm';
 import Sidebar from '../shared/Sidebar';
 import TransferConsultForm from '../call/TransferConsultForm';
+import { searchAndDisplayContact } from '@/services/dynamicsApi';
 
 const HomeScreen = ({ agentInfo, onLogout }) => {
   // Agent states

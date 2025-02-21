@@ -41,3 +41,16 @@ export const searchAndDisplayContact = async (phoneNumber) => {
         };
     }
 };
+
+export const setMode = () => {
+    // Setting Panel to minimize mode.
+Microsoft.CIFramework.setMode(0).then(
+    function (result) {
+        // result will have current state of the panel.
+        console.log(result)
+    },
+    function (error) {
+        // code handling for promise failure
+        console.log(error)
+    });
+}
