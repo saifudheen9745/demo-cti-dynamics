@@ -60,7 +60,7 @@ const HomeScreen = ({ agentInfo, onLogout }) => {
   useEffect(() => {
     const handleIncomingCall = (eventData) => {
       console.log("Microsoft click to dial",eventData)
-      handleInitiateCall(eventData.value);
+      handleInitiateCall(JSON.parse(eventData).value);
     };
 
     eventEmitter.on("clickToDialEvent", handleIncomingCall);
