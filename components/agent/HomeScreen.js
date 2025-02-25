@@ -60,8 +60,7 @@ const HomeScreen = ({ agentInfo, onLogout }) => {
   useEffect(() => {
     const handleIncomingCall = (eventData) => {
       console.log("Microsoft click to dial",eventData)
-      setPhoneNumber("9876543210");
-      handleInitiateCall();
+      handleInitiateCall(eventData.value);
     };
 
     eventEmitter.on("clickToDialEvent", handleIncomingCall);
@@ -110,11 +109,11 @@ const HomeScreen = ({ agentInfo, onLogout }) => {
     setPendingState(null);
   };
 
-  const handleInitiateCall = () => {
-    console.log("Microsoft phone number check 1",phoneNumber);
+  const handleInitiateCall = (number) => {
+    console.log("Microsoft phone number check 1",phoneNumber,number);
     
-    if (!phoneNumber) return;
-    console.log("Microsoft phone number check 2",phoneNumber);
+    if (!phoneNumber && !number) return;
+    console.log("Microsoft phone number check 2",phoneNumber,number);
     
     // Check if already at maximum calls
     if (calls.length >= 2) {
@@ -135,13 +134,13 @@ const HomeScreen = ({ agentInfo, onLogout }) => {
     const newCall = {
       id: Date.now().toString(),
       state: 'InCall',
-      callingNumber: phoneNumber,
+      callingNumber: phoneNumber||number,
       direction: 'Outbound',
       queueName: 'Outbound',
       timeStamp: new Date().toLocaleTimeString(),
       callDetails: {
         'Direction': 'Outbound',
-        'Called Number': phoneNumber,
+        'Called Number': phoneNumber||number,
         'Start Time': new Date().toLocaleTimeString(),
         'Agent ID': agentInfo.agentId
       }
