@@ -111,7 +111,10 @@ const HomeScreen = ({ agentInfo, onLogout }) => {
   };
 
   const handleInitiateCall = () => {
+    console.log("Microsoft phone number check 1",phoneNumber);
+    
     if (!phoneNumber) return;
+    console.log("Microsoft phone number check 2",phoneNumber);
     
     // Check if already at maximum calls
     if (calls.length >= 2) {
