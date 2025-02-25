@@ -54,6 +54,7 @@ export const setMode = () => {
   Microsoft.CIFramework.setMode(1).then(
     function (result) {
       // result will have current state of the panel.
+      setWidth();
       console.log("integration dynamics", result);
       Microsoft.CIFramework.addHandler("onclicktoact", handlerFunction);
     },
@@ -67,6 +68,18 @@ export const setMode = () => {
 const handlerFunction = function(eventData) {
     console.log("Microsoft Dynamics Integration click to dial",eventData)
     return Promise.resolve();
+}
+
+const setWidth = () => {
+    Microsoft.CIFramework.setWidth(500).then(
+        function (result) {
+            // result will have width of the panel, in pixels.
+            console.log(result)
+        },
+        function (error) {
+            // code handling for promise failure
+            console.log(error)
+        });
 }
 
 
