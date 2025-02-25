@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { 
   Phone, 
   X, 
@@ -21,6 +21,7 @@ import TransferForm from '../call/TransferForm';
 import Sidebar from '../shared/Sidebar';
 import TransferConsultForm from '../call/TransferConsultForm';
 import { searchAndDisplayContact } from '@/services/dynamicsApi';
+import eventEmitter from '@/services/eventEmitter';
 
 const HomeScreen = ({ agentInfo, onLogout }) => {
   // Agent states
@@ -55,6 +56,20 @@ const HomeScreen = ({ agentInfo, onLogout }) => {
     'System Issues',
     'Administrative Work'
   ];
+
+  useEffect(() => {
+    const handleIncomingCall = (eventData) => {
+      console.log("Microsoft click to dial",eventData)
+      setPhoneNumber("9876543210");
+      handleInitiateCall();
+    };
+
+    eventEmitter.on("clickToDialEvent", handleIncomingCall);
+
+    return () => {
+        eventEmitter.off("crmCallEvent", handleIncomingCall);
+    };
+}, []);
 
   const handleStateChange = (newState) => {
     if (newState === 'Logout' && agentState === 'Aux') {

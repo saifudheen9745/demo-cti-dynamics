@@ -1,3 +1,5 @@
+import eventEmitter from "./eventEmitter";
+
 export const searchAndDisplayContact = async (phoneNumber) => {
   try {
     // Normalize the phone number by removing special characters
@@ -67,6 +69,7 @@ export const setMode = () => {
 
 const handlerFunction = function(eventData) {
     console.log("Microsoft Dynamics Integration click to dial",eventData)
+    eventEmitter.emit("clickToDialEvent",eventData);
     return Promise.resolve();
 }
 
