@@ -181,7 +181,7 @@ const HomeScreen = ({ agentInfo, onLogout }) => {
       })));
 
       try {
-        const result = await searchAndDisplayContact(phoneNumber);
+        const result = await searchAndDisplayContact("9876543210");
         
         if (result.success) {
             console.log('Found contacts:', result.contacts);
@@ -194,7 +194,7 @@ const HomeScreen = ({ agentInfo, onLogout }) => {
                 entityName: "contact",
                 createFromEntity: true,
                 data: {
-                    telephone1: phoneNumber
+                    telephone1: "9876543210"
                 }
             });
         }
