@@ -180,28 +180,29 @@ const HomeScreen = ({ agentInfo, onLogout }) => {
         state: 'Hold'
       })));
 
-      try {
-        const result = await searchAndDisplayContact("9876543210");
-        
-        if (result.success) {
-            console.log('Found contacts:', result.contacts);
-        } else {
-            // Handle no contacts found
-            console.log(result.message);
-            
-            // Optionally, you could open a new contact form
-            await Microsoft.CIFramework.openForm({
-                entityName: "contact",
-                createFromEntity: true,
-                data: {
-                    telephone1: "9876543210"
-                }
-            });
-        }
-    } catch (error) {
-        console.error('Error handling incoming call:', error);
     }
-    }
+
+    try {
+      const result = await searchAndDisplayContact("9876543210");
+      
+      if (result.success) {
+          console.log('Found contacts:', result.contacts);
+      } else {
+          // Handle no contacts found
+          console.log(result.message);
+          
+          // Optionally, you could open a new contact form
+          await Microsoft.CIFramework.openForm({
+              entityName: "contact",
+              createFromEntity: true,
+              data: {
+                  telephone1: "9876543210"
+              }
+          });
+      }
+  } catch (error) {
+      console.error('Microsoft integration error searching:', error);
+  }
 
     setCalls(prev => [...prev, incomingCall]);
     setActiveCallId(incomingCall.id);
