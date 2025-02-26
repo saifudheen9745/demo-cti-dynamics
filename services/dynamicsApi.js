@@ -59,6 +59,7 @@ export const setMode = () => {
       setWidth();
       console.log("integration dynamics", result);
       Microsoft.CIFramework.addHandler("onclicktoact", handlerFunction);
+      Microsoft.CIFramework.addHandler("manualVerificationChange", manualVerificationHanlder);
     },
     function (error) {
       // code handling for promise failure
@@ -70,6 +71,11 @@ export const setMode = () => {
 const handlerFunction = function(eventData) {
     console.log("Microsoft Dynamics Integration click to dial",eventData)
     eventEmitter.emit("clickToDialEvent",eventData);
+    return Promise.resolve();
+}
+const manualVerificationHanlder = function(eventData) {
+    console.log("Microsoft Dynamics Integration manual verification",eventData)
+    // eventEmitter.emit("clickToDialEvent",eventData);
     return Promise.resolve();
 }
 
