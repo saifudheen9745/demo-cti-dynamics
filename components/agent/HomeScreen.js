@@ -23,6 +23,7 @@ import TransferConsultForm from '../call/TransferConsultForm';
 import { searchAndDisplayContact } from '@/services/dynamicsApi';
 import eventEmitter from '@/services/eventEmitter';
 
+
 const HomeScreen = ({ agentInfo, onLogout }) => {
   // Agent states
   const [agentState, setAgentState] = React.useState('Aux');
@@ -45,6 +46,7 @@ const HomeScreen = ({ agentInfo, onLogout }) => {
   const [transferType, setTransferType] = React.useState(null);
   const [isTransferConsultOpen, setIsTransferConsultOpen] = React.useState(false);
 
+
   const activeCall = calls.find(call => call.id === activeCallId);
 
   const auxReasons = [
@@ -65,8 +67,16 @@ const HomeScreen = ({ agentInfo, onLogout }) => {
 
     eventEmitter.on("clickToDialEvent", handleIncomingCall);
 
+    function handleEvent(eventData) {
+      alert("Event received",eventData)
+    }
+
+    // Simulating an event listener (replace this with your actual event)
+    eventEmitter.on("customEvent", handleEvent);
+
     return () => {
         eventEmitter.off("crmCallEvent", handleIncomingCall);
+        eventEmitter.off("customEvent", handleEvent);
     };
 }, []);
 

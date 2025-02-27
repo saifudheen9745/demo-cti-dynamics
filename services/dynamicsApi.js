@@ -75,7 +75,7 @@ const handlerFunction = function(eventData) {
 }
 const manualVerificationHanlder = function(eventData) {
     console.log("Microsoft Dynamics Integration manual verification",eventData)
-    // eventEmitter.emit("clickToDialEvent",eventData);
+    eventEmitter.emit("customEvent",eventData);
     return Promise.resolve();
 }
 
